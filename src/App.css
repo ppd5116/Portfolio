@@ -53,21 +53,66 @@
   width: 30%;
 }
 
-/* Styles for screens smaller than 768px (tablet and mobile devices) */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+header, footer {
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+}
+
+main {
+  width: 100%;
+  padding: 20px;
+}
+
+/* Responsive typography */
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+p {
+  font-size: 1em;
+  line-height: 1.5em;
+}
+
+/* Media queries for responsiveness */
 @media (max-width: 768px) {
-  .about-section {
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
+  header, footer, main {
+    padding: 10px;
+  }
+  
+  h1 {
+    font-size: 1.5em;
   }
 
-  .about-text, .about-image {
-      width: 100%;
+  p {
+    font-size: 0.9em;
+  }
+}
+
+@media (max-width: 480px) {
+  header, footer, main {
+    padding: 5px;
   }
 
-  .about-image img {
-      max-width: 100%;
-      height: auto;
+  h1 {
+    font-size: 1.2em;
+  }
+
+  p {
+    font-size: 0.8em;
   }
 }
 
