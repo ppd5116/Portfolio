@@ -1,0 +1,40 @@
+.App {
+  text-align: center;
+}
+
+@keyframes move {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+.icon {
+  position: absolute;
+  font-size: 3rem;
+  color: rgba(255, 255, 255, 0.1);
+  animation: move 20s linear infinite;
+}
+
+.icon:nth-child(2n) {
+  animation-duration: 25s;
+  left: 20%;
+}
+
+.icon:nth-child(3n) {
+  animation-duration: 30s;
+  left: 40%;
+}
+
+.icon:nth-child(4n) {
+  animation-duration: 35s;
+  left: 60%;
+}
+
+.icon:nth-child(5n) {
+  animation-duration: 40s;
+  left: 80%;
+}
+
