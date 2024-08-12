@@ -27,6 +27,11 @@ const ListItem = styled.li`
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   display: flex;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  &:hover {
+    transform: scale(1.02);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
   align-items: center;
   min-height: 200px;
   border-left: 10px solid #FFDB58; /* Mustard yellow border */

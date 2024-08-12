@@ -17,13 +17,19 @@ const List = styled.ul`
 `;
 
 const ListItem = styled.li`
-  background: #fff;
+  background: rgba(255, 255, 255, 0.9); // Slight transparency
   margin: 20px 0;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
 `;
 
 const ProjectSummary = styled.div`
@@ -44,8 +50,17 @@ const ToggleButton = styled.button`
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  color: #333;
+  font-weight: bold;
+
   &:hover {
     background-color: #FFD700;
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(0);
   }
 `;
 
