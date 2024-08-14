@@ -16,7 +16,7 @@ const List = styled.ul`
   padding: 0;
 `;
 
-const ListItem = styled.li`
+const ListItem = styled(motion.li)` // Animated using framer-motion
   background: rgba(255, 255, 255, 0.9); // Slight transparency
   margin: 20px 0;
   padding: 20px;
@@ -27,8 +27,9 @@ const ListItem = styled.li`
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 
   &:hover {
-    transform: scale(1.02);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 204, 0.9); // Slight yellow background on hover
   }
 `;
 
@@ -38,12 +39,15 @@ const ProjectSummary = styled.div`
   align-items: center;
 `;
 
-const ProjectDetails = styled.div`
+const ProjectDetails = styled(motion.div)` // Animated using framer-motion
+  display: flex;
+  justify-content: space-between;
   margin-top: 10px;
   margin-right: 20px;
+  overflow: hidden;
 `;
 
-const ToggleButton = styled.button`
+const ToggleButton = styled(motion.button)` // Animated using framer-motion
   margin-top: 10px;
   padding: 10px;
   background-color: #FFDB58;
@@ -65,7 +69,13 @@ const ToggleButton = styled.button`
 `;
 
 const SkillBarsContainer = styled.div`
+  flex: 1;
   margin-top: 10px;
+  margin-bottom: 10px;
+`;
+
+const DescriptionContainer = styled.div`
+  flex: 2;
   margin-right: 20px;
 `;
 
@@ -90,7 +100,7 @@ const projectData = [
   },
   {
     title: "DECOLLE SNN Quantization (Thesis)",
-    technologies: "Pytorch, Python, CUDA GPUs, C++, SNN+CNN",
+    technologies: "Pytorch, Python, CUDA GPUs, C++, Spiking Neural Networks, CNN",
     date: "Present",
     description: [
       "Currently developing a novel approach to integrate Mixed Precision and Hessian Aware trace on the DECOLLE, an online learning SNN framework for Decolle SNN Quantization, minimizing computational overhead during training and inferences.",
@@ -193,23 +203,38 @@ export function Projects() {
         <Heading>Projects</Heading>
         <List>
           {projectData.map((project, index) => (
-            <ListItem key={index}>
+            <ListItem
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
+            >
               <ProjectSummary>
                 <div>
                   <h3>{project.title}</h3>
                   <p><i>Technologies: {project.technologies} | {project.date}</i></p>
                 </div>
-                <ToggleButton onClick={() => toggleProjectDetails(index)}>
+                <ToggleButton
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  onClick={() => toggleProjectDetails(index)}
+                >
                   {visibleProjectIndex === index ? 'Hide Details' : 'Show Details'}
                 </ToggleButton>
               </ProjectSummary>
               {visibleProjectIndex === index && (
-                <ProjectDetails>
-                  <ul>
-                    {project.description.map((desc, i) => (
-                      <li key={i}>{desc}</li>
-                    ))}
-                  </ul>
+                <ProjectDetails
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: 'auto', opacity: 1 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <DescriptionContainer>
+                    <ul>
+                      {project.description.map((desc, i) => (
+                        <li key={i}>{desc}</li>
+                      ))}
+                    </ul>
+                  </DescriptionContainer>
                   <SkillBarsContainer>
                     {project.skills.map((skill, i) => (
                       <SkillBar key={i} skill={skill.skill} percentage={skill.percentage} color={skill.color} />
